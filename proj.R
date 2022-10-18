@@ -1,23 +1,23 @@
 library(shiny)
-x <- read.csv("./healthcare-dataset-stroke-data.csv")
+x <- read.csv("healthcare-dataset-stroke-data.csv")
 ui <- fluidPage(
   tabsetPanel(
     tabPanel(
       "Statistics",
       p(
-        "test"
+        "Filter | Log file, Track how many are left"
       ),
     ),
     tabPanel(
       "Visualization",
       p(
-        "test"
+        "Generate plots depending on variables selected"
       ),
     ),
     tabPanel(
-      "Statistical Analysis ",
+      "Statistical Analysis",
       p(
-        "test"
+        "Prediction : Logistical Model"
       ),
     ),
   )
