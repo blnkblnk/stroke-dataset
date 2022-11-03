@@ -1,0 +1,78 @@
+navbarPage(
+  "Stroke Prediction",
+  tabPanel(
+    "Statistics",
+    sidebarLayout(
+      sidebarPanel(
+        checkboxGroupInput("gender_1",
+                           "Gender",
+                           choices = list("Male", "Female"),
+                           selected = list("Male", "Female"),
+                           inline = TRUE),
+        sliderInput("age_1",
+                    label = "Age",
+                    value = c(0, 82),
+                    min = 0,
+                    max = 82),
+        checkboxGroupInput("hypertension_1",
+                           "Hypertension",
+                           choices = list("Yes" = 1, "No" = 0), 
+                           selected = list(1, 0),
+                           inline = TRUE),
+        checkboxGroupInput("heart_disease_1",
+                           "Heart Disease",
+                           choices = list("Yes" = 1, "No" = 0), 
+                           selected = list(1, 0),
+                           inline = TRUE),
+        checkboxGroupInput("married_1",
+                           "Married",
+                           choices = list("Yes", "No"),
+                           selected = list("Yes", "No"),
+                           inline = TRUE),
+        checkboxGroupInput("work_1",
+                           "Work Type",
+                           choices = list("Private", "Govt_job", "Self-employed"),
+                           selected = list("Private", "Govt_job", "Self-employed"),
+                           inline = TRUE),
+        checkboxGroupInput("residence_1",
+                           "Residence Type",
+                           choices = list("Urban", "Rural"),
+                           selected = list("Urban", "Rural"),
+                           inline = TRUE),
+        sliderInput("glucose_1",
+                    label = "Glucose Level",
+                    value = c(50, 275),
+                    min = 50,
+                    max = 275),
+        sliderInput("bmi_1",
+                    label = "BMI",
+                    value = c(10, 99),
+                    min = 10,
+                    max = 99),
+        checkboxGroupInput("smoke_1",
+                           "Smoking Status",
+                           choices = list("never smoked", "formerly smoked", "smokes"),
+                           selected = list("never smoked", "formerly smoked", "smokes"),
+                           inline = TRUE),
+        actionButton(inputId = "generate_1",
+                     label = "Generate"),
+      ),
+      mainPanel(
+        plotOutput("hist"),
+        verbatimTextOutput("stats")
+      )
+    ),
+  ),
+  tabPanel(
+    "Visualization",
+    p(
+      "TODO: Generate plots depending on variables selected"
+    ),
+  ),
+  tabPanel(
+    "Statistical Analysis",
+    p(
+      "TODO: Prediction : Logistical Model"
+    ),
+  ),
+)
