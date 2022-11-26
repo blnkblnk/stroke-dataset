@@ -58,16 +58,29 @@ navbarPage(
                      label = "Generate"),
       ),
       mainPanel(
-        plotOutput("hist"),
-        verbatimTextOutput("stats")
+        #plotOutput("hist"),
+        tableOutput("stats")
       )
     ),
   ),
   tabPanel(
     "Visualization",
-    p(
-      "TODO: Generate plots depending on variables selected"
-    ),
+    sidebarLayout(
+      sidebarPanel(
+        radioButtons("dataset_selection_2",
+                     "Which dataset to use?",
+                     choices = list("Full", "Generated"),
+                     selected = "Full",
+                     inline = TRUE),
+        selectInput("bloxplot_xval_2", "xval",
+                    choices = NULL, selectize = FALSE),
+        actionButton(inputId = "generate_2",
+                     label = "Generate"),
+      ),
+      mainPanel(
+        plotOutput("boxplot_2")
+      )
+    )
   ),
   tabPanel(
     "Statistical Analysis",
