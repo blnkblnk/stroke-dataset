@@ -1,9 +1,104 @@
-source("global.R")
+if (!require('shiny')) install.packages("shiny") 
+if (!require('tidyverse')) install.packages("tidyverse") 
+if (!require('ggplot2')) install.packages("ggplot2") 
 library(shiny)
 library(tidyverse)
 library(ggplot2)
 
-#ui <- source('ui.R')$value
+ui <- navbarPage(
+  "Stroke Prediction",
+  tabPanel(
+    "Statistics",
+    sidebarLayout(
+      sidebarPanel(
+        checkboxGroupInput("gender_1",
+                           "Gender",
+                           choices = list("Male", "Female"),
+                           selected = list("Male", "Female"),
+                           inline = TRUE),
+        sliderInput("age_1",
+                    label = "Age",
+                    value = c(0, 82),
+                    min = 0,
+                    max = 82),
+        checkboxGroupInput("hypertension_1",
+                           "Hypertension",
+                           choices = list("Yes", "No"),
+                           selected = list("Yes", "No"),
+                           inline = TRUE),
+        checkboxGroupInput("heart_disease_1",
+                           "Heart Disease",
+                           choices = list("Yes", "No"),
+                           selected = list("Yes", "No"),
+                           inline = TRUE),
+        checkboxGroupInput("married_1",
+                           "Married",
+                           choices = list("Yes", "No"),
+                           selected = list("Yes", "No"),
+                           inline = TRUE),
+        checkboxGroupInput("work_1",
+                           "Work Type",
+                           choices = list("Private", "Govt_job", "Self-employed"),
+                           selected = list("Private", "Govt_job", "Self-employed"),
+                           inline = TRUE),
+        checkboxGroupInput("residence_1",
+                           "Residence Type",
+                           choices = list("Urban", "Rural"),
+                           selected = list("Urban", "Rural"),
+                           inline = TRUE),
+        sliderInput("glucose_1",
+                    label = "Glucose Level",
+                    value = c(50, 275),
+                    min = 50,
+                    max = 275),
+        sliderInput("bmi_1",
+                    label = "BMI",
+                    value = c(10, 99),
+                    min = 10,
+                    max = 99),
+        checkboxGroupInput("smoke_1",
+                           "Smoking Status",
+                           choices = list("never smoked", "formerly smoked", "smokes"),
+                           selected = list("never smoked", "formerly smoked", "smokes"),
+                           inline = TRUE),
+        actionButton(inputId = "generate_1",
+                     label = "Generate"),
+      ),
+      mainPanel(
+        #plotOutput("hist"),
+        tableOutput("stats1")
+      )
+    ),
+  ),
+  tabPanel(
+    "Visualization",
+    sidebarLayout(
+      sidebarPanel(
+        radioButtons("dataset_selection_2",
+                     "Which dataset to use?",
+                     choices = list("Full", "Generated"),
+                     selected = "Full",
+                     inline = TRUE),
+        radioButtons("plot_selection_2",
+                     "Which plot type?",
+                     choices = c("Box", "Scatter", "Grid", "Bar"),
+                     inline = TRUE),
+        selectInput("xval_2", "X Axis",
+                    choices = NULL, selectize = FALSE),
+        selectInput("yval_2", "Y Axis",
+                    choices = NULL, selectize = FALSE),
+        actionButton(inputId = "generate_2",
+                     label = "Generate"),
+      ),
+      mainPanel(
+        textOutput("size_2"),
+        plotOutput("plot_2"),
+        tableOutput("analysis_2"),
+        downloadButton("download_2")
+      )
+    )
+  ),
+)
 
 dataset <- read.csv("data/healthcare-dataset-stroke-data.csv")
 #fix BMI as it is read as a string
@@ -193,3 +288,4 @@ server <- function(input, output, session) {
     }
   )
 }
+shinyApp(ui=ui, server=server)
