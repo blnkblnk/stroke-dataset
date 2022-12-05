@@ -3,7 +3,7 @@ library(shiny)
 library(tidyverse)
 library(ggplot2)
 
-ui <- source('ui.R')$value
+#ui <- source('ui.R')$value
 
 dataset <- read.csv("data/healthcare-dataset-stroke-data.csv")
 #fix BMI as it is read as a string
