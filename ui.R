@@ -1,3 +1,6 @@
+library(shiny)
+library(tidyverse)
+library(ggplot2)
 navbarPage(
   "Stroke Prediction",
   tabPanel(
