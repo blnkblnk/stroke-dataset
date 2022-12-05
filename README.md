@@ -11,7 +11,7 @@ Data Source: https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-datas
 
 ```
 library('Shiny')
-shiny::runGitHub("ATP_WTA_Stats","lunching")
+shiny::runGitHub("stroke-dataset","blnkblnk")
 ```
 
 ## Shinyapps.io Hosted
