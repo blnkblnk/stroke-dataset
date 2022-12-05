@@ -16,13 +16,13 @@ navbarPage(
                     max = 82),
         checkboxGroupInput("hypertension_1",
                            "Hypertension",
-                           choices = list("Yes" = 1, "No" = 0), 
-                           selected = list(1, 0),
+                           choices = list("Yes", "No"),
+                           selected = list("Yes", "No"),
                            inline = TRUE),
         checkboxGroupInput("heart_disease_1",
                            "Heart Disease",
-                           choices = list("Yes" = 1, "No" = 0), 
-                           selected = list(1, 0),
+                           choices = list("Yes", "No"),
+                           selected = list("Yes", "No"),
                            inline = TRUE),
         checkboxGroupInput("married_1",
                            "Married",
@@ -59,7 +59,7 @@ navbarPage(
       ),
       mainPanel(
         #plotOutput("hist"),
-        tableOutput("stats")
+        tableOutput("stats1")
       )
     ),
   ),
@@ -72,20 +72,23 @@ navbarPage(
                      choices = list("Full", "Generated"),
                      selected = "Full",
                      inline = TRUE),
-        selectInput("bloxplot_xval_2", "xval",
+        radioButtons("plot_selection_2",
+                     "Which plot type?",
+                     choices = c("Box", "Scatter", "Grid", "Bar"),
+                     inline = TRUE),
+        selectInput("xval_2", "X Axis",
+                    choices = NULL, selectize = FALSE),
+        selectInput("yval_2", "Y Axis",
                     choices = NULL, selectize = FALSE),
         actionButton(inputId = "generate_2",
                      label = "Generate"),
       ),
       mainPanel(
-        plotOutput("boxplot_2")
+        textOutput("size_2"),
+        plotOutput("plot_2"),
+        tableOutput("analysis_2"),
+        downloadButton("download_2")
       )
     )
-  ),
-  tabPanel(
-    "Statistical Analysis",
-    p(
-      "TODO: Prediction : Logistical Model"
-    ),
   ),
 )
