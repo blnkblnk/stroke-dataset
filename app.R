@@ -186,7 +186,7 @@ server <- function(input, output, session) {
     df
   })
   #different possible x and y values for plot
-  observe({
+  a <- observe({
     pt <- input$plot_selection_2
     xchoices <- c("None")
     ychoices <- c("None")
